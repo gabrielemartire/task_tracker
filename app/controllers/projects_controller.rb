@@ -8,6 +8,9 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1 or /projects/1.json
   def show
+    @params = params
+    @task = Task.new
+    @tasks = @project.tasks
   end
 
   # GET /projects/new
