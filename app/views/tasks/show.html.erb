@@ -1,7 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @task %>
-
 <div>
   <%= link_to "Back to tasks", tasks_path %>
 </div>
+
+<h1>task</h1>
+
+<%= render @task %>
+
+<h2>comments</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Status</th>  
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><%= comment.body %></td>
+        <td><%= comment.author_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h2>add comment</h2>
+
+<%= render "comments/form", comment: @comment, task: @task %>
