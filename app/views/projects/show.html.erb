@@ -9,6 +9,20 @@
 
 <h2>Tasks</h2>
 
+<!-- filters -->
+<div>
+  <%= link_to "All", project_path(@project) %>
+  <%= link_to "Todo", project_path(@project, status: 'todo', priority: @params[:priority]) %>
+  <%= link_to "In Progress", project_path(@project, status: 'in_progress', priority: @params[:priority]) %>
+  <%= link_to "Done", project_path(@project, status: 'done', priority: @params[:priority]) %>
+  
+  <%= link_to "Priority 1", project_path(@project, priority: 1, status: @params[:status]) %>
+  <%= link_to "Priority 2", project_path(@project, priority: 2, status: @params[:status]) %>
+  <%= link_to "Priority 3", project_path(@project, priority: 3, status: @params[:status]) %>
+  <%= link_to "Priority 4", project_path(@project, priority: 4, status: @params[:status]) %>
+  <%= link_to "Priority 5", project_path(@project, priority: 5, status: @params[:status]) %>
+</div>
+
 <table>
   <thead>
     <tr>

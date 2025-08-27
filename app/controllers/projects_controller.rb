@@ -11,6 +11,8 @@ class ProjectsController < ApplicationController
     @params = params
     @task = Task.new
     @tasks = @project.tasks
+    @tasks = @tasks.where(status: @params[:status]) if @params[:status].present?
+    @tasks = @tasks.where(priority: @params[:priority]) if @params[:priority].present?
   end
 
   # GET /projects/new
