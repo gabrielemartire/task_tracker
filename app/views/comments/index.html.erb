@@ -10,6 +10,8 @@
 
 <div id="comments">
   <% @comments.each do |comment| %>
-    <%= render comment %>
+    <div class="element">
+      <%= render comment %>
+    </div>
   <% end %>
 </div>
