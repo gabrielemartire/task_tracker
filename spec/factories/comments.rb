@@ -20,5 +20,4 @@ FactoryBot.define do
     author_name { Faker::Name.name }
   end
 
-
 end
