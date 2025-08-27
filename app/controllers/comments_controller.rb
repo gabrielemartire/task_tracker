@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
         format.json { render :show, status: :created, location: @comment }
       else
         @comments = @task.comments
-        format.html { render 'tasks/show', status: :unprocessable_entity }
+        format.html { render "tasks/show", status: :unprocessable_entity }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end

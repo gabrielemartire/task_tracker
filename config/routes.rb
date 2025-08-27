@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   root "pages#landing"
 
-  resources :projects, only: [:index, :show, :create, :new] do 
+  resources :projects, only: [:index, :show, :create, :new] do
     resources :tasks
   end
 
-  resources :tasks, only: [:index, :show, :create, :new] do 
+  resources :tasks, only: [:index, :show, :create, :new] do
     resources :comments
   end
 
@@ -19,5 +19,4 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
   # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
 end
