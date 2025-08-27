@@ -10,10 +10,12 @@
 
 <div id="tasks">
   <% @tasks.each do |task| %>
-    <%= render task %>
-    <p>
-      <%= link_to "Show this task", task %>
-    </p>
+    <div class="element">
+      <%= render task %>
+      <p>
+        <%= link_to "Show this task", task %>
+      </p>
+    </div>
   <% end %>
 </div>
 
