@@ -30,6 +30,7 @@
       <th>Status</th>  
       <th>Due Date</th>
       <th>Priority</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -39,6 +40,17 @@
         <td><%= task.status %></td>
         <td><%= task.due_date&.strftime("%B %d, %Y") %></td>
         <td><%= task.priority %></td>
+        <td>
+          <%= link_to "View", task_path(task) %>
+
+          <% unless task.status == 'done' %>
+            <%= button_to "#{task.status == 'todo' ? 'Start' : 'Done'}", 
+              project_task_path(@project, task), 
+              method: :patch,
+              params: { task: { status: task.status == 'todo' ? 'in_progress' : 'done' } } 
+            %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
