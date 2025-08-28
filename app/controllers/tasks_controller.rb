@@ -4,6 +4,11 @@ class TasksController < ApplicationController
   # GET /tasks or /tasks.json
   def index
     @tasks = Task.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @tasks }
+    end
   end
 
   # GET /tasks/1 or /tasks/1.json
