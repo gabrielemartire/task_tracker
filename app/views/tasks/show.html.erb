@@ -9,22 +9,26 @@
 <%= render @task %>
 
 <h2>comments</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Status</th>  
-    </tr>
-  </thead>
-  <tbody>
-    <% @comments.each do |comment| %>
+<% unless @comments.empty? %>
+  <table>
+    <thead>
       <tr>
-        <td><%= comment.body %></td>
-        <td><%= comment.author_name %></td>
+        <th>Body</th>
+        <th>Author</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @comments.each do |comment| %>
+        <tr>
+          <td><%= comment.body %></td>
+          <td><%= comment.author_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No comments</p>
+<% end %>
 
 <h2>add comment</h2>
 
