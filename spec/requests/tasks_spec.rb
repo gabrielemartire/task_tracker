@@ -62,8 +62,67 @@ RSpec.describe "Tasks", type: :request do
                 expect(response.content_type).to eq("application/json; charset=utf-8")
             end
         end
+    end
 
+    #PATCH
+    describe "PATCH /tasks/:id" do
+        context 'with valid parameters' do
+            it 'update a task' do
+                project = create(:project)
+                task = create(:task)
 
+                patch project_task_path(project, task), params: {
+                    task: {
+                        title: "updated task title"
+                    }
+                }
+                task.reload
+                expect(task.title).to eq("updated task title")
+            end
 
+            it "return success status for JSON format" do
+                project = create(:project)
+                task = create(:task)
+
+                patch project_task_path(project, task, format: :json), params: {
+                    task: {
+                        title: "updated task title"
+                    }
+                }
+
+                expect(response).to have_http_status(:ok)
+                expect(response.content_type).to eq("application/json; charset=utf-8") 
+            end
+        end
+
+        context 'with invalid parameters' do
+            it 'does not update a task' do
+                project = create(:project)
+                task = create(:task)
+                old_title_task = task.title
+
+                patch project_task_path(project, task), params: {
+                    task: {
+                        title: ""
+                    }
+                }
+                task.reload
+                expect(task.title).to eq(old_title_task)
+            end
+
+            it "return unprocessable_entity for JSON format" do
+                project = create(:project)
+                task = create(:task)
+
+                patch project_task_path(project, task, format: :json), params: {
+                    task: {
+                        title: ""
+                    }
+                }
+
+                expect(response).to have_http_status(:unprocessable_entity)
+                expect(response.content_type).to eq("application/json; charset=utf-8")
+            end
+        end
     end
 end
